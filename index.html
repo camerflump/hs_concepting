@@ -10,9 +10,10 @@
   #bx, #bx_snap { width: 200px; height: 150px; }
   #bx_16_9 { width: 160px; height: 90px; }
   #bx h3, #bx_16_9 h3, #bx_snap h3 { text-align: center; margin: 0; }
-  #bx, #bx_16_9, #bx_snap { padding: 0.5em; }
+  #bx, #bx_16_9, #bx_snap, #bx_closable { padding: 0.5em; color: rgba(250,250,250,1); background-color: rgba(30,30,30,0.3) !important; }
   .ui-resizable-helper { border: 2px dotted gray; }
-  body { font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif"; font-size: 62.5%; }
+  .ui-widget-content {background: none !important; }
+  body { font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif"; font-size: 62.5%;  background-image: url("bg_placeholder.png"); background-repeat: repeat;}
   </style>
   <script>
   $(function() {
@@ -33,7 +34,7 @@
   });
   $(function() {
     $( "#bx_snap" ).resizable({
-      grid: 40
+      grid: 20
     }).draggable();
   });
   $(function() {
@@ -41,11 +42,11 @@
       autoOpen: false,
       show: {
         effect: "blind",
-        duration: 500
+        duration: 400
       },
       hide: {
-        effect: "blind",
-        duration: 500
+        //effect: "blind",
+        duration: 100
       }
     });
  
