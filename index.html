@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Box Testing For Harry</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+  #bx, #bx_snap { width: 200px; height: 150px; }
+  #bx_16_9 { width: 160px; height: 90px; }
+  #bx h3, #bx_16_9 h3, #bx_snap h3 { text-align: center; margin: 0; }
+  #bx, #bx_16_9, #bx_snap { padding: 0.5em; }
+  .ui-resizable-helper { border: 2px dotted gray; }
+  body { font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif"; font-size: 62.5%; }
+  </style>
+  <script>
+  $(function() {
+    $( "#bx" ).resizable({
+      animate: true,
+      maxHeight: 250,
+      maxWidth: 350,
+      minHeight: 150,
+      minWidth: 200
+    }).draggable();
+  });
+  $(function() {
+    $( "#bx_16_9" ).resizable({
+      aspectRatio: 16 / 9,
+      minHeight: 90,
+      minWidth: 160
+    }).draggable();
+  });
+  $(function() {
+    $( "#bx_snap" ).resizable({
+      grid: 40
+    }).draggable();
+  });
+  $(function() {
+    $( "#bx_closable" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 500
+      },
+      hide: {
+        effect: "blind",
+        duration: 500
+      }
+    });
+ 
+    $( "#opener" ).click(function() {
+      $( "#bx_closable" ).dialog( "open" );
+    });
+  });
+  </script>
+</head>
+<body>
+
+<div id="bx" class="ui-widget-content">
+  <h3 class="ui-widget-header">Blurb</h3>
+  <p>
+    Some text in here.
+  </p>
+</div>
+<div id="bx_16_9" class="ui-widget-content">
+  <h3 class="ui-widget-header">16/9 box</h3>
+  <p>
+    This box is aspect ratio locked.
+  </p>
+</div>
+<div id="bx_snap" class="ui-widget-content">
+  <h3 class="ui-widget-header">Grid Snap</h3>
+  <p>
+    This box snaps to a custom grid size.
+  </p>
+</div>
+<div id="bx_closable" title="Closable Box">
+  <p>This box has an old school animation and can be closed!</p>
+</div>
+
+<button id="opener">open box</button>
+ 
+ 
+</body>
+</html>
