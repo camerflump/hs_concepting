@@ -1,87 +1,194 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Box Testing For Harry</title>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <style>
-  #bx, #bx_snap { width: 200px; height: 150px; }
-  #bx_16_9 { width: 160px; height: 90px; }
-  #bx h3, #bx_16_9 h3, #bx_snap h3 { text-align: center; margin: 0; }
-  #bx, #bx_16_9, #bx_snap, #bx_closable { padding: 0.5em; color: rgba(250,250,250,1); background-color: rgba(30,30,30,0.4) !important; border: 1px solid white !important;}
-  .ui-resizable-helper { border: 2px dotted gray; }
-  .ui-widget-content {background: none !important; }
-  body { font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif"; font-size: 62.5%;  background-image: url("bg_placeholder.png"); background-repeat: repeat; background-color: rgba(250,250,250,1); }
-  </style>
-  <script>
-  $(function() {
-    $( "#bx" ).resizable({
-      animate: true,
-      maxHeight: 250,
-      maxWidth: 350,
-      minHeight: 150,
-      minWidth: 200
-    }).draggable();
-  });
-  $(function() {
-    $( "#bx_16_9" ).resizable({
-      aspectRatio: 16 / 9,
-      minHeight: 90,
-      minWidth: 160
-    }).draggable();
-  });
-  $(function() {
-    $( "#bx_snap" ).resizable({
-      grid: 20
-    }).draggable();
-  });
-  $(function() {
-    $( "#bx_closable" ).dialog({
-      autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 400
-      },
-      hide: {
-        //effect: "blind",
-        duration: 100
+
+  <head>
+
+    <meta charset="utf-8">
+    
+    <title>Box Testing For Harry</title>
+    
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    
+    <style>
+      #bx, #bx_snap {
+        width: 200px;
+        height: 150px;
+        /*overflow-y: scroll;*/
+        position: relative !important;
+        padding-bottom: 32px;
       }
-    });
- 
-    $( "#opener" ).click(function() {
-      $( "#bx_closable" ).dialog( "open" );
-    });
-  });
-  </script>
-</head>
-<body>
+      #bx_16_9 {
+        width: 160px;
+        height: 90px;
+      }
+      #bx h3, #bx_16_9 h3, #bx_snap h3 {
+        text-align: left;
+        font-weight: 100;
+        margin: 0em;
+        padding-left: 2.5em;
+        padding-top: 0.5em;
+      }
+      #bx_snap h3:hover {
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+      }
+      #bx_snap h3:active {
+        cursor: -webkit-grabbing;
+        cursor: -moz-grabbing;
+      }
+      #bx p, #bx_16_9 p, #bx_snap p, #bx_closable {
+        padding-top: 0.5em;
+        padding-left: 2.5em;
+        padding-right: 2.5em;
+        padding-bottom: 0.5em;
+      }
+      #bx, #bx_16_9, #bx_snap {
+        color: rgba(250,250,250,1);
+        background-color: rgba(30,30,30,0.4) !important;
+        border: 1px solid white !important;
+      }
+      .ui-resizable-helper {
+        border: 2px dotted white;
+      }
+      .ui-widget-content {
+        background: none !important;
+      }
+      .ui-widget-header {
+        color: rgba(250,250,250,1) !important;
+        background: none !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 1px solid white;
+      }
+      #bx_snap .ui-icon {
+        background-image: none !important;
+        border: 1px solid white;
+        width: 10px !important;
+        height: 10px !important;
+      }
+      #bx_snap .ui-resizable-se {
+        margin-top: 0.5em;
+        position: absolute;
+        bottom: -1px !important;
+        right: -1px !important;
+      }
+      .insides {
+        max-height: 100%;
+        overflow: auto;
+        margin-bottom: 1em;
+      }
+      body {
+        margin: 0px;
+        padding: 0px;
+        font-family:  "Trebuchet MS",
+                      "Helvetica",
+                      "Arial",
+                      "Verdana",
+                      "sans-serif";
+        font-size: 62.5%;
+        background-image: url("bg_placeholder.png");
+        background-repeat: repeat;
+        background-color: rgba(250,250,250,1);
+      }
+    </style>
+    
+    <script>
+      $(function() {
+        $( "#bx" ).resizable({
+          animate: true,
+          maxHeight: 250,
+          maxWidth: 350,
+          minHeight: 150,
+          minWidth: 200
+        }).draggable();
+      });
+      $(function() {
+        $( "#bx_16_9" ).resizable({
+          aspectRatio: 16 / 9,
+          minHeight: 90,
+          minWidth: 160
+        }).draggable();
+      });
+      $(function() {
+        $( "#bx_snap" ).resizable({
+          grid: 10,
+          maxHeight: 500,
+          maxWidth: 500,
+          minHeight: 150,
+          minWidth: 200
+        }).draggable();
+      });
+      $(function() {
+        $( "#bx_closable" ).dialog({
+          autoOpen: false,
+          show: {
+            effect: "blind",
+            duration: 400
+          },
+          hide: {
+            //effect: "blind",
+            duration: 100
+          }
+        });
+     
+        $( "#opener" ).click(function() {
+          $( "#bx_closable" ).dialog( "open" );
+        });
+      });
+    </script>
 
-<div id="bx" class="ui-widget-content">
-  <h3 class="ui-widget-header">Blurb</h3>
-  <p>
-    Some text in here.
-  </p>
-</div>
-<div id="bx_16_9" class="ui-widget-content">
-  <h3 class="ui-widget-header">16/9 box</h3>
-  <p>
-    This box is aspect ratio locked.
-  </p>
-</div>
-<div id="bx_snap" class="ui-widget-content">
-  <h3 class="ui-widget-header">Grid Snap</h3>
-  <p>
-    This box snaps to a custom grid size.
-  </p>
-</div>
-<div id="bx_closable" title="Closable Box">
-  <p>This box has an old school animation and can be closed!</p>
-</div>
+  </head>
+  
+  <body>
 
-<button id="opener">open box</button>
- 
- 
-</body>
+    <div id="bx" class="ui-widget-content">
+      <h3 class="ui-widget-header">Blurb</h3>
+      <p>
+        Some text in here.
+      </p>
+    </div>
+
+    <div id="bx_16_9" class="ui-widget-content">
+      <h3 class="ui-widget-header">16/9 box</h3>
+      <p>
+        This box is aspect ratio locked.
+      </p>
+    </div>
+
+    <div id="bx_snap" class="ui-widget-content">
+      <h3 class="ui-widget-header">Grid Snap</h3>
+      <div class="insides">
+        <p>
+          This box snaps to a custom grid size.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis ex elementum, imperdiet felis ut, pulvinar enim. Quisque non ipsum eu augue viverra aliquam ut quis ligula. Maecenas et dolor ut lorem luctus mollis eu in sem. Praesent eleifend, justo finibus pretium eleifend, ex sem placerat dui, id scelerisque est nisl ut urna. Duis imperdiet ut justo ac tempus. Nullam in justo id lacus porta tristique a nec augue. Maecenas maximus nec justo a varius.
+        </p>
+        <p>
+          Fusce est arcu, suscipit eget tortor id, blandit efficitur arcu. Aliquam erat volutpat. Maecenas tempor eros nec tempor malesuada. Sed nec aliquet nisl. Aliquam a justo lorem. Nullam tortor orci, pellentesque quis egestas vitae, ornare quis erat. Pellentesque semper pulvinar est eu vestibulum. Donec justo elit, dignissim non lacus id, porttitor malesuada tortor. Curabitur vitae odio velit. Duis tincidunt purus tellus, in hendrerit est condimentum nec. Praesent elementum, diam a tristique hendrerit, nunc arcu varius mi, vel tempor dui odio et urna. Cras egestas blandit dui nec mattis. Nam ante metus, suscipit ac magna sed, molestie condimentum massa. Aenean lacinia tempus augue a condimentum. Etiam bibendum, ipsum eu vehicula rutrum, sem nulla accumsan lorem, id cursus neque quam sit amet purus. Maecenas et ex erat.
+        </p>
+        <p>
+          Donec id gravida magna. Morbi tempus accumsan gravida. Curabitur aliquam est tellus, sed tempor quam vulputate quis. Sed vitae metus quis nibh egestas egestas. Proin mollis vulputate tellus vitae scelerisque. In lorem nisi, molestie ut arcu a, pretium tincidunt tortor. Praesent condimentum metus justo, ac congue tortor iaculis non. Sed pulvinar accumsan laoreet. Nulla pellentesque faucibus nisi, eget imperdiet ligula vulputate eu. Suspendisse sapien eros, faucibus in magna in, viverra tristique massa.
+        </p>
+        <p>
+          Praesent porttitor condimentum lobortis. Vivamus luctus nisi in ante sodales, pharetra dictum tellus scelerisque. In ac arcu imperdiet, aliquet nibh ut, fringilla quam. Donec cursus euismod diam ac tempus. Duis vel molestie est. Fusce efficitur elit elit, ac sodales ante congue nec. Phasellus ac ante nec enim commodo pretium a vitae nisl. Fusce non interdum tortor. Quisque gravida elit ac sodales luctus. Pellentesque interdum orci eget purus dapibus, eget tempus massa tincidunt.
+        </p>
+        <p>
+          Nullam venenatis mollis urna eget egestas. Pellentesque lobortis ante vel mattis lacinia. In dignissim interdum lacus, luctus dictum nisl porta vitae. Aenean et maximus mauris. Etiam suscipit risus turpis, tempor fringilla arcu ultricies aliquet. Proin ullamcorper facilisis dolor, et cursus sem finibus at. Nullam at scelerisque augue. Maecenas posuere est eu lacus sagittis scelerisque. Etiam non feugiat metus. Pellentesque pulvinar blandit condimentum. Praesent rutrum justo nec odio efficitur consequat.
+        </p>
+      </div>
+    </div>
+
+    <div id="bx_closable" title="Closable Box">
+      <p>This box has an old school animation and can be closed!</p>
+    </div>
+
+    <button id="opener">open box</button>
+   
+  </body>
+
 </html>
