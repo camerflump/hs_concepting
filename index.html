@@ -8,17 +8,65 @@
     <title>Box Testing For Harry</title>
     
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <!-- fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
     
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     
     <style>
+      /*div {
+        display: inline-block;
+      }*/
+      #truenav {
+        position: absolute;
+        bottom: 100px;
+        left: 50px;
+        display: inline-block;
+        list-style: none;
+      }
+      #truenav li {
+        font-size: 140%;
+        margin-top: 20px;
+        color: white;
+        border: 1px solid white;
+        background-color: rgba(30,30,30,0.4);
+        padding: 0.5em;
+      }
+      #truenav li:hover {
+        cursor: pointer;
+      }
+      .wiggle {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+      }
+      .hideme {
+        border-left: 1px solid white;
+        width: 21px;
+        height: 21px;
+        position: absolute;
+        text-align: center;
+        top: 0px;
+        right: 0px;
+        font-size: 140% !important;
+        padding-top: ;
+      }
+      .hideme:hover {
+        cursor:pointer;
+      }
       #bx, #bx_snap {
         width: 200px;
         height: 150px;
         /*overflow-y: scroll;*/
-        position: relative !important;
-        padding-bottom: 32px;
+        padding-bottom: 10px;
+      }
+      #bx_snap{
+        position: absolute !important;
+        top: 200px;
+        left: 250px;
+        overflow: hidden;
       }
       #bx_16_9 {
         width: 160px;
@@ -67,8 +115,8 @@
       #bx_snap .ui-icon {
         background-image: none !important;
         border: 1px solid white;
-        width: 10px !important;
-        height: 10px !important;
+        width: 20px !important;
+        height: 20px !important;
       }
       #bx_snap .ui-resizable-se {
         margin-top: 0.5em;
@@ -79,22 +127,26 @@
       .insides {
         max-height: 100%;
         overflow: auto;
-        margin-bottom: 1em;
+        margin-bottom: 2em;
       }
       body {
         margin: 0px;
         padding: 0px;
-        font-family:  "Trebuchet MS",
-                      "Helvetica",
-                      "Arial",
-                      "Verdana",
-                      "sans-serif";
-        font-size: 62.5%;
+        font-family:  "Droid Sans Mono";
+        font-size: 60%;
         background-image: url("bg_placeholder.png");
         background-repeat: repeat;
         background-color: rgba(250,250,250,1);
       }
     </style>
+
+    <!-- unused fonts
+      "Trebuchet MS",
+      "Helvetica",
+      "Arial",
+      "Verdana",
+      "sans-serif"
+    -->
     
     <script>
       $(function() {
@@ -145,50 +197,117 @@
   
   <body>
 
-    <div id="bx" class="ui-widget-content">
-      <h3 class="ui-widget-header">Blurb</h3>
-      <p>
-        Some text in here.
-      </p>
-    </div>
+    <div id="" class="wiggle">
 
-    <div id="bx_16_9" class="ui-widget-content">
-      <h3 class="ui-widget-header">16/9 box</h3>
-      <p>
-        This box is aspect ratio locked.
-      </p>
-    </div>
-
-    <div id="bx_snap" class="ui-widget-content">
-      <h3 class="ui-widget-header">Grid Snap</h3>
-      <div class="insides">
+      <div id="bx" class="ui-widget-content">
+        <h3 class="ui-widget-header">Blurb</h3>
         <p>
-          This box snaps to a custom grid size.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis ex elementum, imperdiet felis ut, pulvinar enim. Quisque non ipsum eu augue viverra aliquam ut quis ligula. Maecenas et dolor ut lorem luctus mollis eu in sem. Praesent eleifend, justo finibus pretium eleifend, ex sem placerat dui, id scelerisque est nisl ut urna. Duis imperdiet ut justo ac tempus. Nullam in justo id lacus porta tristique a nec augue. Maecenas maximus nec justo a varius.
-        </p>
-        <p>
-          Fusce est arcu, suscipit eget tortor id, blandit efficitur arcu. Aliquam erat volutpat. Maecenas tempor eros nec tempor malesuada. Sed nec aliquet nisl. Aliquam a justo lorem. Nullam tortor orci, pellentesque quis egestas vitae, ornare quis erat. Pellentesque semper pulvinar est eu vestibulum. Donec justo elit, dignissim non lacus id, porttitor malesuada tortor. Curabitur vitae odio velit. Duis tincidunt purus tellus, in hendrerit est condimentum nec. Praesent elementum, diam a tristique hendrerit, nunc arcu varius mi, vel tempor dui odio et urna. Cras egestas blandit dui nec mattis. Nam ante metus, suscipit ac magna sed, molestie condimentum massa. Aenean lacinia tempus augue a condimentum. Etiam bibendum, ipsum eu vehicula rutrum, sem nulla accumsan lorem, id cursus neque quam sit amet purus. Maecenas et ex erat.
-        </p>
-        <p>
-          Donec id gravida magna. Morbi tempus accumsan gravida. Curabitur aliquam est tellus, sed tempor quam vulputate quis. Sed vitae metus quis nibh egestas egestas. Proin mollis vulputate tellus vitae scelerisque. In lorem nisi, molestie ut arcu a, pretium tincidunt tortor. Praesent condimentum metus justo, ac congue tortor iaculis non. Sed pulvinar accumsan laoreet. Nulla pellentesque faucibus nisi, eget imperdiet ligula vulputate eu. Suspendisse sapien eros, faucibus in magna in, viverra tristique massa.
-        </p>
-        <p>
-          Praesent porttitor condimentum lobortis. Vivamus luctus nisi in ante sodales, pharetra dictum tellus scelerisque. In ac arcu imperdiet, aliquet nibh ut, fringilla quam. Donec cursus euismod diam ac tempus. Duis vel molestie est. Fusce efficitur elit elit, ac sodales ante congue nec. Phasellus ac ante nec enim commodo pretium a vitae nisl. Fusce non interdum tortor. Quisque gravida elit ac sodales luctus. Pellentesque interdum orci eget purus dapibus, eget tempus massa tincidunt.
-        </p>
-        <p>
-          Nullam venenatis mollis urna eget egestas. Pellentesque lobortis ante vel mattis lacinia. In dignissim interdum lacus, luctus dictum nisl porta vitae. Aenean et maximus mauris. Etiam suscipit risus turpis, tempor fringilla arcu ultricies aliquet. Proin ullamcorper facilisis dolor, et cursus sem finibus at. Nullam at scelerisque augue. Maecenas posuere est eu lacus sagittis scelerisque. Etiam non feugiat metus. Pellentesque pulvinar blandit condimentum. Praesent rutrum justo nec odio efficitur consequat.
+          Some text in here.
         </p>
       </div>
-    </div>
 
-    <div id="bx_closable" title="Closable Box">
-      <p>This box has an old school animation and can be closed!</p>
-    </div>
+      <div id="bx_16_9" class="ui-widget-content">
+        <h3 class="ui-widget-header">16/9 box</h3>
+        <p>
+          This box is aspect ratio locked.
+        </p>
+      </div>
 
-    <button id="opener">open box</button>
+      <div id="bx_snap" class="ui-widget-content">
+        <div class="hideme">
+          x
+        </div>
+        <h3 class="ui-widget-header">Grid Snap</h3>
+        <div class="insides">
+          <p>
+            This box snaps to a custom grid size.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis ex elementum, imperdiet felis ut, pulvinar enim. Quisque non ipsum eu augue viverra aliquam ut quis ligula. Maecenas et dolor ut lorem luctus mollis eu in sem. Praesent eleifend, justo finibus pretium eleifend, ex sem placerat dui, id scelerisque est nisl ut urna. Duis imperdiet ut justo ac tempus. Nullam in justo id lacus porta tristique a nec augue. Maecenas maximus nec justo a varius.
+          </p>
+          <p>
+            Fusce est arcu, suscipit eget tortor id, blandit efficitur arcu. Aliquam erat volutpat. Maecenas tempor eros nec tempor malesuada. Sed nec aliquet nisl. Aliquam a justo lorem. Nullam tortor orci, pellentesque quis egestas vitae, ornare quis erat. Pellentesque semper pulvinar est eu vestibulum. Donec justo elit, dignissim non lacus id, porttitor malesuada tortor. Curabitur vitae odio velit. Duis tincidunt purus tellus, in hendrerit est condimentum nec. Praesent elementum, diam a tristique hendrerit, nunc arcu varius mi, vel tempor dui odio et urna. Cras egestas blandit dui nec mattis. Nam ante metus, suscipit ac magna sed, molestie condimentum massa. Aenean lacinia tempus augue a condimentum. Etiam bibendum, ipsum eu vehicula rutrum, sem nulla accumsan lorem, id cursus neque quam sit amet purus. Maecenas et ex erat.
+          </p>
+          <p>
+            Donec id gravida magna. Morbi tempus accumsan gravida. Curabitur aliquam est tellus, sed tempor quam vulputate quis. Sed vitae metus quis nibh egestas egestas. Proin mollis vulputate tellus vitae scelerisque. In lorem nisi, molestie ut arcu a, pretium tincidunt tortor. Praesent condimentum metus justo, ac congue tortor iaculis non. Sed pulvinar accumsan laoreet. Nulla pellentesque faucibus nisi, eget imperdiet ligula vulputate eu. Suspendisse sapien eros, faucibus in magna in, viverra tristique massa.
+          </p>
+          <p>
+            Praesent porttitor condimentum lobortis. Vivamus luctus nisi in ante sodales, pharetra dictum tellus scelerisque. In ac arcu imperdiet, aliquet nibh ut, fringilla quam. Donec cursus euismod diam ac tempus. Duis vel molestie est. Fusce efficitur elit elit, ac sodales ante congue nec. Phasellus ac ante nec enim commodo pretium a vitae nisl. Fusce non interdum tortor. Quisque gravida elit ac sodales luctus. Pellentesque interdum orci eget purus dapibus, eget tempus massa tincidunt.
+          </p>
+          <p>
+            Nullam venenatis mollis urna eget egestas. Pellentesque lobortis ante vel mattis lacinia. In dignissim interdum lacus, luctus dictum nisl porta vitae. Aenean et maximus mauris. Etiam suscipit risus turpis, tempor fringilla arcu ultricies aliquet. Proin ullamcorper facilisis dolor, et cursus sem finibus at. Nullam at scelerisque augue. Maecenas posuere est eu lacus sagittis scelerisque. Etiam non feugiat metus. Pellentesque pulvinar blandit condimentum. Praesent rutrum justo nec odio efficitur consequat.
+          </p>
+        </div>
+      </div>
+
+      <div id="bx_closable" title="Closable Box">
+        <p>This box has an old school animation and can be closed!</p>
+      </div>
+
+      <button id="opener">open box</button>
+
+      <ul id="truenav">
+
+        <li>
+          Grid Snap
+        </li>
+          
+        <li>
+          Placeholder 1
+        </li>
+
+        <li>
+          Placeholder 2
+        </li>
+
+      </ul>
+
+    </div>
    
+    <!-- mousemove shite -->
+    <script>
+      var mouseX;
+      var mouseY;
+      var offset;
+      var differenceX;
+      var differenceY;
+      var moveX;
+      var moveY;
+      var getposX;
+      var getposY;
+      var centerX;
+      var centerY;
+
+      $(document).mousemove( function(e) {
+        mouseX = e.pageX; 
+        mouseY = e.pageY;
+        
+        offset = $( '.wiggle' ).offset();
+
+        getposY = offset.top;
+        getposX = offset.left;
+
+        centerX = getposX + ($( '.wiggle' ).height() / 2);
+        centerY = getposY + ($( '.wiggle' ).width() / 2);
+
+        differenceX = mouseX - centerX;
+        differenceY = mouseY - centerY;
+
+        moveX = ((centerX - differenceX) * 0.01);
+        moveY = ((centerY - differenceY) * 0.01);
+
+        $( '.wiggle' ).css({ 'top': moveY , 'left': moveX });
+
+        $( '#bx_16_9' ).text('offset top: ' + offset.top + ' , offset left: ' + offset.left + ', mouseX: ' + mouseX + ', mouseY: ' + mouseY);
+      });
+    </script>
+
+    <!-- hideme shite -->
+    <script>
+      $( '.hideme' ).click( function() {
+        $(this).parent().hide();
+      });
+    </script>
   </body>
 
 </html>
