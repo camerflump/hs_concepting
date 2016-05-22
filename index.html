@@ -40,6 +40,11 @@
       }
       #truenav li:hover {
         cursor: pointer;
+        border: 1px solid rgba(120,120,120,1);
+        color: rgba(120,120,120,1) !important;
+      }
+      #truenav li:active {
+        color: rgba(255,208,43,1);
       }
       .wiggle {
         position: fixed;
@@ -48,14 +53,15 @@
       }
       .hideme {
         border-left: 1px solid white;
-        width: 21px;
-        height: 21px;
+        border-bottom: 1px solid white;
+        width: 10px;
+        height: 10px;
         position: absolute;
         text-align: center;
         top: 0px;
         right: 0px;
-        font-size: 140% !important;
-        padding-top: ;
+        font-size: 100% !important;
+        padding-top: -3px ;
       }
       .hideme:hover {
         cursor:pointer;
@@ -72,6 +78,7 @@
         /*overflow-y: scroll;*/
       }
       #bx_snap{
+        display: none;
         position: absolute !important;
         top: 200px;
         left: 250px;
@@ -86,7 +93,7 @@
         text-align: left;
         font-weight: 100;
         margin: 0em;
-        padding-left: 2.5em;
+        padding-left: 2.1em;
         padding-top: 0.5em;
       }
       #bx_snap h3:hover {
@@ -137,8 +144,8 @@
       .ui-cheat-box {
         display: block;
         position: absolute;
-        width: 24px;
-        height: 24px;
+        width: 11px;
+        height: 11px;
         bottom: -4px;
         right: -4px;
         border-bottom: 1px solid white;
@@ -150,14 +157,33 @@
         margin-bottom: 2em;
       }
       body {
+        overflow: hidden;
         margin: 0px;
         padding: 0px;
         font-family:  "Droid Sans Mono";
         font-size: 60%;
-        background-image: url("bg_placeholder2.png");
-        background-repeat: repeat;
+        letter-spacing: 0.2em;
         /*background-color: rgba(250,250,250,1);*/
         background-color: rgba(30,30,30,1);
+      }
+      #background_overlay{
+        overflow: hidden;
+        z-index: -1;
+        background-repeat: repeat;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background-image: url("bg_placeholder2.png");
+      }
+      #background_image {
+        overflow: hidden;
+        top: -5%;
+        left: -5%;
+        width: 110%;
+        height: 110%;
+        position: absolute;
+        z-index: -2;
+        /*background-image: url("bg_large.jpg");*/
       }
     </style>
 
@@ -170,22 +196,22 @@
     -->
     
     <script>
-      $(function() {
-        $( "#bx" ).resizable({
-          animate: true,
-          maxHeight: 250,
-          maxWidth: 350,
-          minHeight: 150,
-          minWidth: 200
-        }).draggable();
-      });
-      $(function() {
-        $( "#bx_16_9" ).resizable({
-          aspectRatio: 16 / 9,
-          minHeight: 90,
-          minWidth: 160
-        }).draggable();
-      });
+    //  $(function() {
+    //    $( "#bx" ).resizable({
+    //      animate: true,
+    //      maxHeight: 250,
+    //      maxWidth: 350,
+    //      minHeight: 150,
+    //      minWidth: 200
+    //    }).draggable();
+    //  });
+    //  $(function() {
+    //    $( "#bx_16_9" ).resizable({
+    //      aspectRatio: 16 / 9,
+    //      minHeight: 90,
+    //      minWidth: 160
+    //    }).draggable();
+    //  });
       $(function() {
         $( "#bx_snap" ).resizable({
           grid: 10,
@@ -195,31 +221,36 @@
           minWidth: 200
         }).draggable();
       });
-      $(function() {
-        $( "#bx_closable" ).dialog({
-          autoOpen: false,
-          show: {
-            effect: "blind",
-            duration: 400
-          },
-          hide: {
-            //effect: "blind",
-            duration: 100
-          }
-        });
-     
-        $( "#opener" ).click(function() {
-          $( "#bx_closable" ).dialog( "open" );
-        });
-      });
+    //  $(function() {
+    //    $( "#bx_closable" ).dialog({
+    //      autoOpen: false,
+    //      show: {
+    //        effect: "blind",
+    //        duration: 400
+    //      },
+    //      hide: {
+    //        //effect: "blind",
+    //        duration: 100
+    //      }
+    //    });
+    // 
+    //    $( "#opener" ).click(function() {
+    //      $( "#bx_closable" ).dialog( "open" );
+    //    });
+    //  });
     </script>
 
   </head>
   
   <body>
+    <div id="background_overlay">
+    </div>
+
+    <div id="background_image" class="wiggle2">
+    </div>
 
     <div id="" class="wiggle">
-
+    <!--
       <div id="bx" class="ui-widget-content">
         <h3 class="ui-widget-header">Blurb</h3>
         <p>
@@ -233,7 +264,7 @@
           This box is aspect ratio locked.
         </p>
       </div>
-
+    -->
       <div id="bx_snap" class="ui-widget-content">
         <div class="ui-cheat-box">
         </div>
@@ -264,18 +295,18 @@
           </div>
         </div>
       </div>
-
+      <!--
       <div id="bx_closable" title="Closable Box">
         <p>This box has an old school animation and can be closed!</p>
       </div>
 
       <button id="opener">open box</button>
-
+      -->
     </div>
 
     <ul id="truenav">
 
-      <li>
+      <li class="bx_snap_button">
         Grid Snap
       </li>
         
@@ -323,7 +354,7 @@
 
         $( '.wiggle' ).css({ 'top': moveY , 'left': moveX });
 
-        $( '#bx_16_9' ).text('offset top: ' + offset.top + ' , offset left: ' + offset.left + ', mouseX: ' + mouseX + ', mouseY: ' + mouseY);
+        $( '.wiggle2' ).css({ 'top': (-moveY/2) , 'left': (-moveX/2) });
       });
     </script>
 
@@ -331,6 +362,27 @@
     <script>
       $( '.hideme' ).click( function() {
         $(this).parent().hide();
+        if ($('#bx_snap').is(':visible')) {
+          $( '.bx_snap_button' ).css('color','rgba(255,208,43,1)');
+          $( '#background_image' ).css('background-image', 'url("bg_large.jpg")');
+        } else {
+          $( '.bx_snap_button' ).css('color','white');
+          $( '#background_image' ).css('background-image', '');
+        }
+      });
+    </script>
+
+    <!-- button open shit -->
+    <script>
+      $( '.bx_snap_button' ).click( function() {
+        $( '#bx_snap' ).show();
+        if ($('#bx_snap').is(':visible')) {
+          $( '.bx_snap_button' ).css('color','rgba(255,208,43,1)');
+          $( '#background_image' ).css('background-image', 'url("bg_large.jpg")');
+        } else {
+          $( '.bx_snap_button' ).css('color','white');
+          $( '#background_image' ).css('background-image', '');
+        }
       });
     </script>
   </body>
